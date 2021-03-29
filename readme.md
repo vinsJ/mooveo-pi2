@@ -27,7 +27,7 @@ Here is the [Matching part](./Matching/readme.md)
 
 ---
 
-Well... This is it. Our last words to you. It has been a pleasure, we sincerly hope Mooveo will thrive (and STONKS 👨‍🏫📈) 🚀🦄 !
+Well... This is it. Our last words to you. It has been a pleasure, we sincerly hope that Mooveo will thrive (and STONKS 👨‍🏫📈) 🚀🦄 !
 
 À plus l'équipe ! 👋
 
