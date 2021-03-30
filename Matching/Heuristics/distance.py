@@ -11,7 +11,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-API_KEY = os.getenv('API_KEY')
+API_KEY_GMAP = os.getenv('API_KEY_GMAP')
 USE_GMAP = os.getenv('USE_GMAP')
 
 passportIndex = pd.read_csv('./DB/passport-index-matrix.csv', index_col = 'Passport')
@@ -63,7 +63,7 @@ def DistanceAPIGMap(userCoord, offerCoord, distance):
         drivingTime = None
         transitTime = None
 
-        api_url = "https://maps.googleapis.com/maps/api/distancematrix/json?origins=" + str(userCoord['latitude']) + "," + str(userCoord['longitude']) + "&destinations=" + str(offerCoord['latitude']) + "," + str(offerCoord['longitude']) + "&key=" + str(API_KEY)
+        api_url = "https://maps.googleapis.com/maps/api/distancematrix/json?origins=" + str(userCoord['latitude']) + "," + str(userCoord['longitude']) + "&destinations=" + str(offerCoord['latitude']) + "," + str(offerCoord['longitude']) + "&key=" + str(API_KEY_GMAP)
         if(distance <= 50):
             #Make car and transit request
             car_req = requests.get(api_url + "&mode=driving").json()
@@ -150,7 +150,6 @@ def Heuristic(userLocation, offerLocation):
             visaType = VisaType(userLocation['country'], offerLocation['country'])
             coeffVisa = {'NA' : 0, 'VR' : 0.1, 'ETA' : 0.1, 'VF' : 1, 'VOA' : 0.9, '15' : 0.2, '21' : 0.3, '90' : 0.5, '120' : 0.6, '180' : 0.7, '360' : 0.8}
             heuristicCountry = (1 - (rawDist)/earthCircHalf) * coeffVisa[visaType]
-
 
         heuristic = {'gmapH' : {'driving': drivingH, 'transit': transitH}, 'insideCountry' : heuristicInsideCoutry, 'countryH' : heuristicCountry}
         return heuristic
